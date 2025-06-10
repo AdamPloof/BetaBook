@@ -1,5 +1,7 @@
 using SQLite;
 
+namespace BetaBook.Core.Entities;
+
 /// <summary>
 /// Many to many table for gear on a rack
 /// </summary>

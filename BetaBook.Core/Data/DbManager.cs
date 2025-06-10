@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 using BetaBook.Core.Entities;
 
-namespace BetaBook.UI.Data;
+namespace BetaBook.Core.Data;
 
 public class DbManager {
-    private SQLiteAsyncConnection? _db;
+    private SQLiteAsyncConnection _db;
     
-    public DbManager() {
-        string dbDir = FileSystem.AppDataDirectory;
-        string dbPath = Path.Combine(dbDir, "beta.db");
+    public DbManager(string dbPath) {
+        // string dbDir = FileSystem.AppDataDirectory;
+        // string dbPath = Path.Combine(dbDir, "beta.db");
         var dbOptions = new SQLiteConnectionString(dbPath);
         _db = new SQLiteAsyncConnection(dbOptions);
 
@@ -18,11 +18,6 @@ public class DbManager {
     }
 
     async Task Init() {
-        if (_db is not null) {
-            return;
-        }
-
-        _db = new SQLiteAsyncConnection("");
         await _db.CreateTableAsync<Beta>();
         await _db.CreateTableAsync<PitchSection>();
         await _db.CreateTableAsync<Pitch>();

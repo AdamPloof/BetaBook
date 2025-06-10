@@ -8,6 +8,6 @@ public class Rack {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
 
-    // TODO: add many to many
+    [Ignore]
     public List<Gear> Gear { get; set; } = [];
 }

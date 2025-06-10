@@ -15,6 +15,6 @@ public class Pitch {
     [Column("name")]
     public string? Name { get; set; }
 
-    // TODO: add one to many
+    [Ignore]
     public List<PitchSection> Sections { get; set; } = [];
 }

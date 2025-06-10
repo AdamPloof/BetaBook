@@ -13,6 +13,6 @@ public class Route {
     [Column("name")]
     public string? Name { get; set; }
 
-    // TODO: add one to many
+    [Ignore]
     public List<Pitch> Pitches { get; set; } = [];
 }
