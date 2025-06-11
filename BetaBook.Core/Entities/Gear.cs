@@ -8,10 +8,18 @@ public class Gear {
     [Column("id")]
     public int Id { get; set; }
 
-    [Column("manufacturer_id")]
-    public int? ManufacturerId { get; set; } = null;
+    [Column("manufacturer")]
+    public string? Manufacturer { get; set; } = null;
+
+    // required
+    // active/passive
+    [Column("type")]
+    public string? Type { get; set; }
 
     // required
     [Column("description")]
     public string? Description { get; set; }
+
+    [Column("size")]
+    public string? Size { get; set; } = null;
 }

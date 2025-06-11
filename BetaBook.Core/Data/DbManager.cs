@@ -23,7 +23,6 @@ public class DbManager {
         await _db.CreateTableAsync<Pitch>();
         await _db.CreateTableAsync<Route>();
         await _db.CreateTableAsync<Crag>();
-        await _db.CreateTableAsync<Manufacturer>();
         await _db.CreateTableAsync<Gear>();
         await _db.CreateTableAsync<Rack>();
         await _db.CreateTableAsync<RackGear>();
