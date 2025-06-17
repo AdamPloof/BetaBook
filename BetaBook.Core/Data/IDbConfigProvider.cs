@@ -10,4 +10,10 @@ public interface IDbConfigProvider {
     /// </summary>
     /// <returns></returns>
     public string GetDatabasePath();
+
+    /// <summary>
+    /// Get the path to the seed data
+    /// </summary>
+    /// <returns></returns>
+    public string GetGearDataPath();
 }

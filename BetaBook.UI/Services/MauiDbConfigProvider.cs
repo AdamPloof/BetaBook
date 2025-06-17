@@ -4,8 +4,10 @@ namespace BetaBook.UI.Services;
 
 public class MauiDbConfigProvider : IDbConfigProvider {
     public string GetDatabasePath() {
-        string dbDir = FileSystem.AppDataDirectory;
+        return Path.Combine(FileSystem.AppDataDirectory, "beta.db");;
+    }
 
-        return Path.Combine(dbDir, "beta.db");;
+    public string GetGearDataPath() {
+        return Path.Combine(FileSystem.AppDataDirectory, "gear.json");;
     }
 }

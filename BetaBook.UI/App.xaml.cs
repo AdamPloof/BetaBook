@@ -1,11 +1,28 @@
-﻿namespace BetaBook.UI;
+﻿using BetaBook.Core.Data;
+using BetaBook.Core.Entities;
 
-public partial class App : Application
-{
-	public App()
-	{
+namespace BetaBook.UI;
+
+public partial class App : Application {
+	private readonly DbManager _db;
+	private readonly IDbConfigProvider _dbConfig;
+
+	public App(DbManager db, IDbConfigProvider dbConfig) {
 		InitializeComponent();
 
+		_db = db;
+		_dbConfig = dbConfig;
+
 		MainPage = new AppShell();
+	}
+
+	protected override async void OnStart() {
+		base.OnStart();
+
+		// Seed gear tables when app loads if no gear exists yet
+		var gear = await _db.FindAllAsync<Gear>();
+		if (!gear.Any()) {
+			await GearSeeder.LoadGear(_db, _dbConfig.GetGearDataPath());
+		}
 	}
 }
