@@ -3,14 +3,10 @@ using SQLite;
 namespace BetaBook.Core.Data;
 
 public class BaseRepository<T> : IRepository<T> where T : new() {
-    private readonly SQLiteAsyncConnection _db;
+    private readonly DbManager _db;
 
-    public BaseRepository(SQLiteAsyncConnection db) {
+    public BaseRepository(DbManager db) {
         _db = db;
-    }
-
-    public async Task AddAsync(T entity) {
-        await _db.InsertAsync(entity);
     }
 
     public async Task<T?> FindAsync(int id) {
@@ -18,12 +14,6 @@ public class BaseRepository<T> : IRepository<T> where T : new() {
     }
 
     public async Task<IEnumerable<T>> FindAllAsync() {
-        return await _db.Table<T>().ToListAsync();
-    }
-
-    public async Task<bool> RemoveAsync(T entity) {
-        int result = await _db.DeleteAsync(entity);
-
-        return result > 0;
+        return await _db.FindAllAsync<T>();
     }
 }

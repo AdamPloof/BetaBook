@@ -9,9 +9,11 @@ using BetaBook.Core.Entities;
 namespace BetaBook.Core.Data;
 
 public static class GearSeeder {
-    public static async Task LoadGear(string gearPath) {
+    public static async Task LoadGear(DbManager db, string gearPath) {
         List<Gear> gear = await ParseGear(gearPath);
-        
+        foreach (Gear g in gear) {
+            await db.AddAsync(g);
+        }
     }
 
     private static async Task<List<Gear>> ParseGear(string gearPath) {
