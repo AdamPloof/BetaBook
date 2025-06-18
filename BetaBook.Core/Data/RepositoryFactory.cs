@@ -3,9 +3,9 @@ using SQLite;
 namespace BetaBook.Core.Data;
 
 public class RepositoryFactory {
-    private readonly SQLiteAsyncConnection _db;
+    private readonly DbManager _db;
 
-    public RepositoryFactory(SQLiteAsyncConnection db) {
+    public RepositoryFactory(DbManager db) {
         _db = db;
     }
 

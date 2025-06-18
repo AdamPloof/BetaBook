@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaBook.UI", "BetaBook.UI\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaBook.Core", "BetaBook.Core\BetaBook.Core.csproj", "{1EF19544-6CF8-4BB0-90E9-7CDF251531D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaBook.Tests", "BetaBook.Tests\BetaBook.Tests.csproj", "{DDC3F7A8-CA02-41F7-A0FC-2E390F446DB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{1EF19544-6CF8-4BB0-90E9-7CDF251531D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EF19544-6CF8-4BB0-90E9-7CDF251531D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EF19544-6CF8-4BB0-90E9-7CDF251531D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC3F7A8-CA02-41F7-A0FC-2E390F446DB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC3F7A8-CA02-41F7-A0FC-2E390F446DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC3F7A8-CA02-41F7-A0FC-2E390F446DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC3F7A8-CA02-41F7-A0FC-2E390F446DB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
