@@ -1,42 +1,50 @@
 using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using Xunit;
+
 using BetaBook.Core.Data;
+using BetaBook.Core.Entities;
 
 namespace BetaBook.Tests.Data;
 
-public class TestDbConfigProvider : IDbConfigProvider {
-    public string GetDatabasePath() {
-        string baseDir = AppContext.BaseDirectory;
-        string projectRoot = Path.GetFullPath(Path.Combine(baseDir, @"../../../"));
-        string dbPath = Path.Combine(projectRoot, "var/beta.db");
+public class DbManagerTests {
+    [Fact]
+    public async void DbIsCreated() {
+        TestDbConfigProvider dbConfig = new("db_created_");
+        DbManager db = new DbManager(dbConfig);
+        await db.EnsureReadyAsync();
+        string dbPath = dbConfig.GetDatabasePath();
 
-        return dbPath;
-    }
-
-    public string GetGearDataPath() {
-        return "";
-    }
-}
-
-public class DbManagerTests : IDisposable {
-    private readonly IDbConfigProvider _dbConfig;
-
-    public DbManagerTests() {
-        _dbConfig = new TestDbConfigProvider();
+        try {
+            Assert.True(File.Exists(dbPath));
+        } finally {
+            if (File.Exists(dbPath)) {
+                File.Delete(dbPath);
+            }
+        }
     }
 
     [Fact]
-    public void DbIsCreated() {
-        DbManager _ = new DbManager(_dbConfig);
-        string dbPath = _dbConfig.GetDatabasePath();
-        Assert.True(File.Exists(dbPath));
-    }
+    public async Task BetaInserted() {
+        TestDbConfigProvider dbConfig = new("beta_inserted_");
+        DbManager db = new DbManager(dbConfig);
+        Beta beta = new Beta() {
+            MoveNumber = 1,
+            Description = "Foo"
+        };
+        await db.AddAsync(beta);
+        IEnumerable<Beta> allBeta = await db.FindAllAsync<Beta>();
 
-    public void Dispose() {
-        string dbPath = _dbConfig.GetDatabasePath();
-        if (File.Exists(dbPath)) {
-            File.Delete(dbPath);
+        try {
+            Assert.NotEmpty(allBeta);
+        } finally {
+            string dbPath = dbConfig.GetDatabasePath();
+            if (File.Exists(dbPath)) {
+                File.Delete(dbPath);
+            }
         }
     }
 }

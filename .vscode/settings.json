@@ -1,3 +1,4 @@
 {
-    "dotnet.defaultSolution": "BetaBook.sln"
+    "dotnet.defaultSolution": "BetaBook.sln",
+    "inlineChat.lineNaturalLanguageHint": false
 }
