@@ -1,5 +1,8 @@
-﻿using BetaBook.Core.Data;
+﻿using Microsoft.Maui.Controls;
+
+using BetaBook.Core.Data;
 using BetaBook.Core.Entities;
+using BetaBook.UI.Pages;
 
 namespace BetaBook.UI;
 
@@ -9,6 +12,8 @@ public partial class App : Application {
 
 	public App(DbManager db, IDbConfigProvider dbConfig) {
 		InitializeComponent();
+		Routing.RegisterRoute("home", typeof(MainPage));
+		Routing.RegisterRoute("beta", typeof(BetaPage));
 
 		_db = db;
 		_dbConfig = dbConfig;

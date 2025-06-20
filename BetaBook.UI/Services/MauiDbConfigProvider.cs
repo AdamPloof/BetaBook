@@ -8,6 +8,7 @@ public class MauiDbConfigProvider : IDbConfigProvider {
     }
 
     public string GetGearDataPath() {
+        // TODO: update to resources directory
         return Path.Combine(FileSystem.AppDataDirectory, "gear.json");;
     }
 }
